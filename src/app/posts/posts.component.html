@@ -1,0 +1,53 @@
+<div class="page-container bg-dark-new">
+    <div class="d-flex justify-content-center flex-column mb-30">
+        <div class="w-25px border-color-neon mb-5"></div>
+        <h6 class="text-normal">Add New Post</h6>
+    </div>
+    <form [formGroup]="postsForm">
+        <div class="d-flex flex-column row">
+            <div class="d-flex align-items-center mb-20 col-6">
+                <input type="text" formControlName="title" placeholder="Enter Title Here" class="form-control mr-20 rounded-0 border-color-neon input-bg-dark height-50">
+                <div class="btn-group h-50px" dropdown [insideClick]="true">
+                    <button id="button-basic" dropdownToggle type="button" class="btn btn-success dropdown-toggle"
+                            aria-controls="dropdown-basic">Add Tags
+                       <span class="caret"></span>
+                    </button>
+                    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu w-250"
+                        role="menu" aria-labelledby="button-basic">
+                        <ng-container>
+                            <div>
+                                <input type="text" class="form-control w-200 ml-20" placeholder="Add tags" (keyup.enter)="addTags($event)">
+                            </div>
+                            <div class="pl-20 pt-10 pb-10 pr-20" *ngIf="tags.length > 0">
+                                <span class="badge text-bg-info mb-10 mr-10" *ngFor="let tag of tags">{{tag}}</span>
+                            </div>
+                        </ng-container>
+                    </ul>
+                  </div>
+            </div>
+            <div class="col-6">
+                <textarea formControlName="description" class="form-control rounded-0 border-color-neon" placeholder="Enter description here....." rows="5"></textarea>
+            </div>
+        </div>
+        <div class="mt-10">
+            <div class="btn-group h-50px" dropdown [insideClick]="true">
+                <button id="button-basic" dropdownToggle type="button" class="btn btn-success dropdown-toggle"
+                        aria-controls="dropdown-basic">Add Categories
+                   <span class="caret"></span>
+                </button>
+                <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu w-250"
+                    role="menu" aria-labelledby="button-basic">
+                    <ng-container>
+                        <div>
+                            <input type="text" class="form-control w-200 ml-20" placeholder="Add categories" (keyup.enter)="addCategory($event)">
+                        </div>
+                        <div class="pl-20 pt-10 pb-10 pr-20" *ngIf="categories.length > 0">
+                            <span class="badge text-bg-info mb-10 mr-10" *ngFor="let category of categories">{{category}}</span>
+                        </div>
+                    </ng-container>
+                </ul>
+              </div>
+        </div>
+        <button type="button" class="btn btn-success btn-no-border mt-20" (click)="addPosts()">SAVE</button>
+    </form>
+</div>

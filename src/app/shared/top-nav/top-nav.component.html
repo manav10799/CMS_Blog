@@ -1,0 +1,9 @@
+<nav class="navbar" *ngIf="user">
+    <div class="container-fluid">
+      <a class="navbar-brand">{{user.name}}</a>
+      <div class="d-flex align-items-center">
+        <img src="{{user.photoUrl}}" alt="Avatar" class="avatar">
+        <p class="ml-10 text-neon cursor-pointer" (click)="logOut()">Log Out</p>
+      </div>
+    </div>
+  </nav>

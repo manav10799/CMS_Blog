@@ -1,1 +1,335 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+}
+.main-container {
+    position: relative;
+    min-height: 100vh;    
+    .navbar {
+        margin-left: 250px;
+    }
+}
+
+.app-container {
+    margin-left: 250px;
+}
+
+.page-container {
+    padding: 40px 60px;
+    min-height: calc(100vh - 69px);
+    .text-normal {
+        color: white;
+    }
+}
+
+p,
+h5,
+h6 {
+  margin: 0;
+  padding: 0;
+}
+
+.icon {
+  &.icon-green {
+    color: #6EEB83;
+  }
+}
+
+.opacity-2 {
+  opacity: .2;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.left-nav {
+  position: absolute;
+  top: 0;
+  background-color: #171918;
+  width: 250px;
+  height: 100%;
+  padding: 50px 20px 0 20px;
+  color: aliceblue;
+  border-right: 3px solid #6EEB83;
+
+  .left-nav-header {
+    color: #6EEB83;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    &.left-nav-body {
+      li {
+        padding: 10px;
+        color: #969998;
+        cursor: pointer;
+
+        a {
+          text-decoration: inherit;
+          color: inherit;
+        }
+
+        &.active {
+          color: white;
+          font-size: 18px;
+          font-weight: 500;
+          pointer-events: none;
+        }
+
+        .icon {
+          color: #6EEB83;
+        }
+      }
+    }
+  }
+}
+
+.input-search-bar {
+  position: relative;
+
+  .icon {
+    position: absolute;
+    top: 13px;
+    color: #7F8080;
+    left: 8px;
+  }
+
+  input {
+    border: 0;
+    text-indent: 30px;
+
+    &.search-bar {
+      border-radius: 8px;
+    }
+
+    &.search-bar-dark {
+      background-color: #3A3B3B;
+      caret-color: white;
+      color: white;
+    }
+
+    &.search-bar-l {
+      height: 40px;
+    }
+
+    &:focus {
+      border: 0;
+    }
+
+    &:focus-visible {
+      outline: 0;
+    }
+
+  }
+}
+
+.avatar {
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+$spaceamounts: (4, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100);
+$sides: (top, bottom, left, right);
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+
+    .p#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
+}
+
+$sizes: () !default;
+$sizes: map-merge((
+    25px: 25px,
+    50px: 50px,
+    75px: 75px,
+    150: 150px,
+    100px: 100px,
+    200: 200px,
+    250: 250px,
+    300: 300px,
+    400: 400px,
+    500: 500px,
+    600: 600px,
+    700: 700px,
+    auto: auto),
+  $sizes);
+
+@each $prop,
+$abbrev in (width: w, height: h) {
+
+  @each $size,
+  $length in $sizes {
+    .#{$abbrev}-#{$size} {
+      #{$prop}: $length !important;
+    }
+  }
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+
+  &.dot-xs {
+    height: 12px;
+    width: 12px;
+  }
+}
+
+.height-50 {
+    height: 50px;
+}
+
+input[type=text] {
+    &.form-control {
+    border-radius: 0;
+        &:focus-visible {
+            outline: none;
+        }
+        &:focus {
+            border: 0;
+            box-shadow: none;
+            border: 1px solid #dee2e6;
+        }
+        &.input-bg-dark {
+            background-color: #3A3B3B;
+            caret-color: white;
+            color: white;
+
+            &:focus {
+                border: 1px solid #6EEB83;
+            }
+        }
+        &::placeholder {
+            color: #7F8080;
+        }
+    }
+}
+
+.bg-dark-new {
+    textarea {
+        background-color: #3A3B3B;
+        caret-color: white;
+        color: white;
+        &.border-color-neon {
+            &.form-control {
+                &:focus {
+                    box-shadow: none;
+                    border: 1px solid #6EEB83;
+                    background-color: #3A3B3B;
+                    color: white;
+                }
+            }
+        }
+        &::placeholder {
+            color: #7F8080;
+        }
+    }
+}
+
+.navbar {
+    background-color: #171918;
+    border-bottom: 3px solid #6EEB83;
+    a {
+        &.navbar-brand {
+            color: #6EEB83;
+            font-weight: 500;
+        }
+    }
+}
+
+.border-color-neon {
+    border: 1px solid #6EEB83;
+}
+
+.bg-dark-new {
+    background-color: #171918;
+}
+
+.text-neon {
+    color: #6EEB83;
+}
+
+.tramsform-90-negative {
+    transform: rotate(-90deg);
+}
+
+.text-align-end {
+    text-align: end;
+}
+
+button {
+    &.btn {
+        padding: 8px 28px;
+        &.btn-no-border {
+            border-radius: 0;
+        }
+        &.btn-success {
+            background-color: #6EEB83;
+            color: #171918;
+            font-weight: 600;
+            &:active {
+                color: #171918 !important;
+            }
+        }
+    }
+}
+
+.btn-group {
+    border-radius: 0;
+    button {
+        border-radius: 0;
+        &:active {
+            color: #171918 !important;
+        }
+    }
+}
+
+.dropdown-menu {
+    background-color: whitesmoke;
+    border-radius: 0;
+    .dropdown-item {
+    cursor: pointer;
+        &:active,&:focus {
+            background-color: whitesmoke;
+            color: black
+        }
+    }
+}
+
+.batch-tag {
+    color: #6EEB83;
+    border: 1px solid #6EEB83;
+    padding: 2px 12px;
+    border-radius: 10px;
+}
+
+.border-dashed-neon {
+    border: 1px dashed #6EEB83;
+}
+
+.clear-padding {
+    padding: 0 !important;
+}
+
+.px-20 {
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.py-20 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}

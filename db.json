@@ -1,0 +1,63 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "First Dummy Post",
+      "author": "Manav Arora",
+      "date": "2023-01-27T09:53:54.064Z",
+      "tags": [
+        "Manav"
+      ],
+      "description": "We use a large block of connected links for our pagination, making links hard to miss and easily scalable—all while providing large hit areas. Pagination is built with list HTML elements so screen readers can announce the number of available links. Use a wrapping <nav> element to identify it as a navigation section to screen readers and other assistive technologies."
+    },
+    {
+      "title": "Arrow function expressions",
+      "description": "An arrow function expression is a compact alternative to a traditional function expression, with some semantic differences and deliberate limitations in usage",
+      "date": "2023-01-27T14:14:49.194Z",
+      "author": "Manav Arora",
+      "tags": [
+        "javascript"
+      ],
+      "id": 2
+    },
+    {
+      "title": "Array.prototype.filter()",
+      "description": "The filter() method creates a shallow copy of a portion of a given array, filtered down to just the elements from the given array that pass the test implemented by the provided function.",
+      "date": "2023-01-27T14:50:09.182Z",
+      "author": "Manav Arora",
+      "tags": [
+        "js filter map ",
+        "arrow"
+      ],
+      "id": 3
+    },
+    {
+      "title": "Array.prototype.some()",
+      "description": "The some() method tests whether at least one element in the array passes the test implemented by the provided function. It returns true if, in the array, it finds an element for which the provided function returns true; otherwise it returns false. It doesn't modify the array.",
+      "date": "2023-01-27T14:52:28.723Z",
+      "author": "Manav Arora",
+      "tags": [
+        "some",
+        "Array"
+      ],
+      "id": 4
+    },
+    {
+      "title": "What's the best thing to lick",
+      "description": "Depends on us always, The modern JavaScript course for everyone! Master JavaScript with projects, challenges and theory. Many courses in one!",
+      "date": "2023-01-28T10:39:56.729Z",
+      "author": "Manav Arora",
+      "tags": [
+        "Take care"
+      ],
+      "id": 5
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ]
+}

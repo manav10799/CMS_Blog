@@ -1,0 +1,24 @@
+<div class="page-container bg-dark-new">
+    <div class="d-flex justify-content-center flex-column mb-30">
+        <div class="w-25px border-color-neon mb-5"></div>
+        <h6 class="text-normal">Latest</h6>
+        
+    </div>
+    <div  class="row">
+        <div *ngFor="let post of posts" class="col-4">
+            <div class="d-flex align-items-start">
+                <h5 class="text-normal mr-10 mb-10">{{post.date | date : 'dd'}}<br>{{post.date | date : 'MMM'}}</h5>
+                <div>
+                    <div>
+                        <h5 class="text-neon mb-10">{{post.title}}.</h5>
+                        <h6 class="text-normal">{{post.description}}</h6>
+                        <p class="text-normal text-align-end">@{{post.author}}</p>
+                    </div>
+                    <div class="pt-10 pb-10 pr-20 d-flex justify-content-start">
+                        <span class="batch-tag mb-10 mr-10" *ngFor="let tag of post.tags">#{{tag}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
