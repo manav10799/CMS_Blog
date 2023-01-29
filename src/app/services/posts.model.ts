@@ -5,6 +5,8 @@ export class PostsModel {
     date: Date;
     author: string;
     tags: Array<any>;
+    likeCount: number;
+    comments: Array<any>;
 
     constructor(args:any) {
         this.id =  args.id;
@@ -13,6 +15,8 @@ export class PostsModel {
         this.date = args.date;
         this.author = args.author;
         this.tags = args.tags || [];
+        this.likeCount = args.likeCount || 0;
+        this.comments = args.comments || [];
     }
 }
 
@@ -23,6 +27,8 @@ export class AddPostModel {
     date: Date;
     author: string;
     tags: Array<any>;
+    likeCount: number;
+    comments: Array<any>;
 
     constructor(args:any) {
         this.id =  args.id;
@@ -31,6 +37,8 @@ export class AddPostModel {
         this.date = args.date;
         this.author = args.author;
         this.tags = args.tags || [];
+        this.likeCount = args.likeCount || 0;
+        this.comments = args.comments || [];
     }
 }
 

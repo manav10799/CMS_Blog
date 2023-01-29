@@ -1,11 +1,11 @@
-<div class="page-container bg-dark-new">
+<div class="page-container bg-dark-new bg-svg">
     <div class="d-flex justify-content-center flex-column mb-30">
         <div class="w-25px border-color-neon mb-5"></div>
         <h6 class="text-normal">Add New Post</h6>
     </div>
     <form [formGroup]="postsForm">
         <div class="d-flex flex-column row">
-            <div class="d-flex align-items-center mb-20 col-6">
+            <div class="d-flex align-items-center mb-20 col-sm-12 col-lg-6 col-md-12">
                 <input type="text" formControlName="title" placeholder="Enter Title Here" class="form-control mr-20 rounded-0 border-color-neon input-bg-dark height-50">
                 <div class="btn-group h-50px" dropdown [insideClick]="true">
                     <button id="button-basic" dropdownToggle type="button" class="btn btn-success dropdown-toggle"
@@ -25,11 +25,11 @@
                     </ul>
                   </div>
             </div>
-            <div class="col-6">
+            <div class="col-sm-6">
                 <textarea formControlName="description" class="form-control rounded-0 border-color-neon" placeholder="Enter description here....." rows="5"></textarea>
             </div>
         </div>
-        <div class="mt-10">
+        <!-- <div class="mt-10">
             <div class="btn-group h-50px" dropdown [insideClick]="true">
                 <button id="button-basic" dropdownToggle type="button" class="btn btn-success dropdown-toggle"
                         aria-controls="dropdown-basic">Add Categories
@@ -47,7 +47,7 @@
                     </ng-container>
                 </ul>
               </div>
-        </div>
+        </div> -->
         <button type="button" class="btn btn-success btn-no-border mt-20" (click)="addPosts()">SAVE</button>
     </form>
 </div>

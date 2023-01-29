@@ -17,4 +17,13 @@ export class PostsService {
   addPosts(posts: AddPostModel):Observable<any> {
     return this.http.post('http://localhost:3000/posts', posts)
   }
+
+  getIndividualPost(id:number):Observable<any> {
+    return this.http.get(`http://localhost:3000/posts/${id}`);
+  }
+
+  updateLikeCount(post:AddPostModel,id:number): Observable<any> {
+    return this.http.put(`http://localhost:3000/posts/${id}`,post);
+  }
+
 }

@@ -28,6 +28,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './shared/login/login.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { AuthGuardService } from './services/authgaurd.service';
+import { IndividualPostComponent } from './dashboard/individual-post/individual-post.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { AuthGuardService } from './services/authgaurd.service';
     LeftNavComponent,
     DashboardComponent,
     TopNavComponent,
-    LoginComponent
+    LoginComponent,
+    IndividualPostComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,7 @@ import { AuthGuardService } from './services/authgaurd.service';
   providers: [{
     provide: 'SocialAuthServiceConfig',
     useValue: {
-      autoLogin: false,
+      autoLogin: true,
       providers: [
         {
           id: GoogleLoginProvider.PROVIDER_ID,

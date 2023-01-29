@@ -1,3 +1,4 @@
-<div class="page-container">
+<div class="page-container" *ngIf="!user">
+    <!-- <button class="btn btn-social-icon btn-google" *ngIf="!user" (click)="signInWithGoogle()">Sign in</button> -->
     <asl-google-signin-button type="standard" size="large"> </asl-google-signin-button>
 </div>

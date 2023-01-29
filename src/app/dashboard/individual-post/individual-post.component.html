@@ -1,0 +1,52 @@
+<div class="page-container bg-dark-new bg-svg">
+    <div *ngIf="post">
+        <h3 class="text-neon mb-20">{{post.title}}.</h3>
+        <h5 class="text-secondary-emphasis fw-light">written by @{{post.author}}</h5>
+        <p class="text-secondary-emphasis fw-light mb-30">on {{post.date | date : 'dd MMM yyyy'}}</p>
+        <h6 class="text-normal first-letter">{{post.description}}</h6>
+    </div>
+    <div class="d-flex align-items-center justify-content-center mt-50" *ngIf="post">
+        <div class="pill bottom-pill">
+            <div class="d-flex align-items-center">
+                <span class="like-btn" #likeBtn (click)="likeCount()" [class.like-active]="post.likeCount > 0"></span>
+                <span class="like-count text-secondary-emphasis border-right pr-10 border-red">{{post.likeCount}}</span>
+                <span class="icon ic-bubble2 ml-10 icon-red mr-10 cursor-pointer" (click)="openModal(template)"></span>
+                <span class="text-secondary-emphasis border-right pr-10 border-red">{{post.comments.length}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #template>
+    <div class="modal-header border-0 bg-dark-new">
+      <h4 class="modal-title pull-left text-normal">Responses ({{post.comments.length}})</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body bg-dark-new">
+      <div class="card w-350 h-200 bg-dark-new">
+        <div class="card-body">
+            <div class="box-shadow d-flex justify-content-between flex-column p-20">
+                <div>
+                    <div class="d-flex align-items-center mb-20">
+                        <img src="{{user.photoUrl}}" alt="Avatar" class="avatar avatar-sm">
+                        <p class="text-normal ml-10">{{user.firstName}}</p>
+                    </div>
+                    <textarea class="border-0 w-100 bg-dark-new" placeholder="What are your thoughts?" [(ngModel)]="comment"></textarea>
+                </div>
+                <div class="d-flex align-items-center justify-content-end">
+                    <p class="text-normal">Cancel</p>
+                    <button type="button" class="btn btn-success btn-sm ml-10 btn-rounded" (click)="addComment()">Respond</button>
+                </div>
+            </div>
+            <div class="mt-20">
+                <p class="text-normal pb-10">Most Recent Comments</p>
+                <div *ngFor="let com of post.comments;let i = index" class="mb-20">
+                    <p class="text-normal">{{i+1}}. {{com}}</p>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>
