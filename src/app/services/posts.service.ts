@@ -11,19 +11,19 @@ export class PostsService {
   constructor(private http: HttpClient) { }
 
   getPosts():Observable<any> {
-    return this.http.get('http://localhost:3000/posts');
+    return this.http.get('https://json-server-mauve.vercel.app/posts');
   }
 
   addPosts(posts: AddPostModel):Observable<any> {
-    return this.http.post('http://localhost:3000/posts', posts)
+    return this.http.post('https://json-server-mauve.vercel.app/posts', posts)
   }
 
   getIndividualPost(id:number):Observable<any> {
-    return this.http.get(`http://localhost:3000/posts/${id}`);
+    return this.http.get(`https://json-server-mauve.vercel.app/posts/${id}`);
   }
 
   updateLikeCount(post:AddPostModel,id:number): Observable<any> {
-    return this.http.put(`http://localhost:3000/posts/${id}`,post);
+    return this.http.put(`https://json-server-mauve.vercel.app/posts/${id}`,post);
   }
 
 }

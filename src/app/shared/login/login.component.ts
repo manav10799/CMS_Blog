@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   user: SocialUser;
-  loggedIn: boolean;
+  loggedIn: boolean;  
 
   constructor(private router: Router,
     private socialAuthService: SocialAuthService) {
