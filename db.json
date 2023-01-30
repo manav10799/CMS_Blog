@@ -1,23 +1,20 @@
 {
   "posts": [
     {
-      "0": {
-        "id": 1,
-        "title": "First Dummy Post",
-        "author": "Manav Arora",
-        "date": "2023-01-27T09:53:54.064Z",
-        "tags": [
-          "Manav"
-        ],
-        "description": "We use a large block of connected links for our pagination, making links hard to miss and easily scalable—all while providing large hit areas. Pagination is built with list HTML elements so screen readers can announce the number of available links. Use a wrapping <nav> element to identify it as a navigation section to screen readers and other assistive technologies.",
-        "likeCount": 41,
-        "comments": [
-          "The correct answer to #1 is kill it with fire. Implicitly coercing an object to string and then using it that way? No, refactor the darn code.",
-          "The correct answer to #1 is kill it with fire. Implicitly coercing an object to string and then using it that way? No, refactor the darn code.",
-          "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-        ]
-      },
-      "id": 1
+      "id": 1,
+      "title": "First Dummy Post",
+      "author": "Manav Arora",
+      "date": "2023-01-27T09:53:54.064Z",
+      "tags": [
+        "Manav"
+      ],
+      "description": "We use a large block of connected links for our pagination, making links hard to miss and easily scalable—all while providing large hit areas. Pagination is built with list HTML elements so screen readers can announce the number of available links. Use a wrapping <nav> element to identify it as a navigation section to screen readers and other assistive technologies.",
+      "likeCount": 41,
+      "comments": [
+        "The correct answer to #1 is kill it with fire. Implicitly coercing an object to string and then using it that way? No, refactor the darn code.",
+        "The correct answer to #1 is kill it with fire. Implicitly coercing an object to string and then using it that way? No, refactor the darn code.",
+        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      ]
     },
     {
       "title": "Arrow function expressions",
