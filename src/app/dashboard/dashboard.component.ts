@@ -21,9 +21,10 @@ export class DashboardComponent implements OnInit {
   }
 
   getPosts() {
-    this.postsService.getPosts().subscribe((result) => {
-      this.filteredPosts = this.posts = result;
-    });
+    // this.postsService.getPosts().subscribe((result) => {
+    //   this.filteredPosts = this.posts = result;
+    // });
+    this.filteredPosts = this.posts = JSON.parse(localStorage.getItem('posts') || '{}');
   }
 
   filterPosts(value:any) {

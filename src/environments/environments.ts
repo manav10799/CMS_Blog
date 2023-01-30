@@ -1,4 +1,4 @@
 export const environment = {
     production: false,
-    apiUrl: 'https://json-serve-dev.vercel.app'
+    apiUrl: 'http://localhost:3000'
   };

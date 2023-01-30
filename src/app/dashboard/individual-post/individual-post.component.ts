@@ -12,6 +12,7 @@ import { PostsService } from 'src/app/services/posts.service';
 export class IndividualPostComponent implements OnInit,OnDestroy {
 
   post: AddPostModel;
+  posts: Array<any> = [];
   user: SocialUser = new SocialUser;
   routeId: number;
   modalRef?: BsModalRef;
@@ -25,8 +26,10 @@ export class IndividualPostComponent implements OnInit,OnDestroy {
   }
   
   ngOnInit(): void {
+    this.posts = JSON.parse(localStorage.getItem('posts') || '{}');
     this.routeId = Number(this.route.snapshot.paramMap.get('id'));
-    this.postService.getIndividualPost(this.routeId).subscribe(res => this.post = res);
+    // this.postService.getIndividualPost(this.routeId).subscribe(res => this.post = res);
+    this.post = this.posts.filter((e: any) => e.id === this.routeId)[0];
     this.authService.authState.subscribe(user => {
       this.user = user;
     });
@@ -42,14 +45,12 @@ export class IndividualPostComponent implements OnInit,OnDestroy {
 
   addComment() {
     this.comments.push(this.comment);
-    this.post.comments.push(this.comment);
+    this.posts.filter((e:any) => e.id === this.routeId)[0].comments.push(this.comment);
     this.comment = '';
   }
 
   ngOnDestroy(){
-    this.postService.updateLikeCount(this.post, this.routeId).subscribe(result =>{
-      
-    })
+    localStorage.setItem('posts', JSON.stringify(this.posts));
   }
   
 }

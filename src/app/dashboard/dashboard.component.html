@@ -27,5 +27,9 @@
                 </div>
             </div>
         </div>
+        <div *ngIf="filteredPosts.length === 0" class="d-flex align-items-center justify-content-center flex-column col-sm-12">
+            <h5 class="mb-10 text-normal text-center">No posts has been addeed by you</h5>
+            <button type="button" class="btn btn-success btn-sm ml-10 btn-rounded" [routerLink]="['../posts']">Add Posts</button>
+        </div>
     </div>
 </div>
