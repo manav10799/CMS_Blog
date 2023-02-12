@@ -1,12 +1,11 @@
 export class PostsModel {
-    id: number;
+    id: any;
     title:string;
     description: string;
     date: Date;
     author: string;
     tags: Array<any>;
     likeCount: number;
-    comments: Array<any>;
 
     constructor(args:any) {
         this.id =  args.id;
@@ -16,19 +15,17 @@ export class PostsModel {
         this.author = args.author;
         this.tags = args.tags || [];
         this.likeCount = args.likeCount || 0;
-        this.comments = args.comments || [];
     }
 }
 
 export class AddPostModel {
-    id: number;
+    id: any;
     title:string;
     description: string;
     date: Date;
     author: string;
     tags: Array<any>;
     likeCount: number;
-    comments: Array<any>;
 
     constructor(args:any) {
         this.id =  args.id;
@@ -38,7 +35,6 @@ export class AddPostModel {
         this.author = args.author;
         this.tags = args.tags || [];
         this.likeCount = args.likeCount || 0;
-        this.comments = args.comments || [];
     }
 }
 
@@ -51,3 +47,19 @@ export class AddTags {
         this.name = args.name;
     }
 }
+
+export class AddComment {
+    id:any;
+    comments: string; 
+    author: string;
+    date: Date;
+    profileImage: string;
+
+    constructor(args: any) {
+        this.id = args.id;
+        this.comments = args.comment;
+        this.author = args.author;
+        this.date = args.date;
+        this.profileImage = args.profileImage;
+    }
+ }

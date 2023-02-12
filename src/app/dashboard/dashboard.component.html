@@ -1,4 +1,4 @@
-<div class="page-container bg-dark-new bg-svg">
+<div class="page-container bg-dark-new bg-svg" *ngIf="isDataLoaded">
     <div class="d-flex justify-content-between align-items-center">
         <div class="d-flex justify-content-center flex-column mb-30">
             <div class="w-25px border-color-neon mb-5"></div>
@@ -17,7 +17,7 @@
                 <h5 class="text-normal mr-10 mb-10">{{post.date | date : 'dd'}}<br>{{post.date | date : 'MMM'}}</h5>
                 <div>
                     <div>
-                        <h5 class="text-neon mb-10 cursor-pointer" [routerLink]="['/post', post.id]">{{post.title}}.</h5>
+                        <h5 class="text-neon mb-10 cursor-pointer" [routerLink]="['/dashboard', post.id]">{{post.title}}.</h5>
                         <h6 class="text-normal text-truncate-7">{{post.description}}</h6>
                         <p class="text-normal text-align-end">@{{post.author}}</p>
                     </div>

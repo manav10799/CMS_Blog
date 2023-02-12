@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
-import { AddPostModel, AddTags, PostsModel } from "./posts.model";
+import { AddComment, AddPostModel } from "./posts.model";
 import { environment } from "src/environments/environments";
 
 @Injectable({
@@ -13,19 +13,27 @@ export class PostsService {
 
   apiUrl = environment.apiUrl;
   getPosts():Observable<any> {
-    return this.http.get(`${this.apiUrl}/posts`);
+    return this.http.get(`${this.apiUrl}/blogs/posts`);
   }
 
   addPosts(posts: AddPostModel):Observable<any> {
-    return this.http.post(`${this.apiUrl}/posts`, posts)
+    return this.http.post(`${this.apiUrl}/blogs/posts`, posts)
   }
 
-  getIndividualPost(id:number):Observable<any> {
-    return this.http.get(`${this.apiUrl}/posts/${id}`);
+  getIndividualPost(id:any):Observable<any> {
+    return this.http.get(`${this.apiUrl}/blogs/posts/${id}`);
   }
 
-  updateLikeCount(post:AddPostModel,id:number): Observable<any> {
-    return this.http.put(`${this.apiUrl}/posts/${id}`,post);
+  addComments(comment:AddComment):Observable<any> {
+    return this.http.post(`${this.apiUrl}/blogs/comments`,comment);
+  }
+
+  getComments(id:any):Observable<any> {
+    return this.http.get(`${this.apiUrl}/blogs/comments/${id}`);
+  }
+
+  updateLikeCount(id:any, post:AddPostModel): Observable<any> {
+    return this.http.put(`${this.apiUrl}/blogs/posts/${id}`,post);
   }
 
 }

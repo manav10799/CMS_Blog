@@ -1,8 +1,9 @@
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
-import { Component, ElementRef, OnDestroy, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import * as moment from 'moment';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import { AddPostModel } from 'src/app/services/posts.model';
+import { AddComment, AddPostModel } from 'src/app/services/posts.model';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -12,9 +13,9 @@ import { PostsService } from 'src/app/services/posts.service';
 export class IndividualPostComponent implements OnInit,OnDestroy {
 
   post: AddPostModel;
-  posts: Array<any> = [];
+  // posts: Array<any> = [];
   user: SocialUser = new SocialUser;
-  routeId: number;
+  routeId: any;
   modalRef?: BsModalRef;
   comments: Array<any> = [];
   comment:any;
@@ -26,10 +27,15 @@ export class IndividualPostComponent implements OnInit,OnDestroy {
   }
   
   ngOnInit(): void {
-    this.posts = JSON.parse(localStorage.getItem('posts') || '{}');
-    this.routeId = Number(this.route.snapshot.paramMap.get('id'));
-    // this.postService.getIndividualPost(this.routeId).subscribe(res => this.post = res);
-    this.post = this.posts.filter((e: any) => e.id === this.routeId)[0];
+    // this.posts = JSON.parse(localStorage.getItem('posts') || '{}');
+    this.routeId = this.route.snapshot.paramMap.get('id');
+    this.postService.getIndividualPost(this.routeId).subscribe(res => {
+      this.post = res[0];
+      if(this.post) {
+        this.getComments(this.post.id);
+      }
+    });
+    // this.post = this.posts.filter((e: any) => e.id === this.routeId)[0];
     this.authService.authState.subscribe(user => {
       this.user = user;
     });
@@ -43,14 +49,59 @@ export class IndividualPostComponent implements OnInit,OnDestroy {
     this.modalRef = this.modalService.show(template,Object.assign({}, { class: 'right-modal-400' }));
   }
 
+  getComments(id:any) {
+    this.postService.getComments(id).subscribe(res => {
+        this.comments = res.sort((a:any,b:any) => moment(b.date).valueOf() - moment(a.date).valueOf());
+    })
+  }
+
   addComment() {
-    this.comments.push(this.comment);
-    this.posts.filter((e:any) => e.id === this.routeId)[0].comments.push(this.comment);
-    this.comment = '';
+    const comment = new AddComment({});
+    comment.id = this.post.id;
+    comment.comments = this.comment;
+    comment.author = this.user.name;
+    comment.date = new Date();
+    comment.profileImage = this.user.photoUrl;
+    this.comments.push(comment);
+    this.postService.addComments(comment).subscribe(res => {
+        if(res) {
+          this.comment = '';
+        }
+    })
+  } 
+
+  getDateTimeDiff(current:Date) {
+    let date1 = moment(current);
+    let date2 = moment(new Date());
+    return date2.diff(date1, 'days') === 0 ? date2.diff(date1,'minutes') > 60 ? date2.diff(date1,'hours') + " hours ago": date2.diff(date1,'minutes') + " minutes ago"  : date2.diff(date1, 'days') + " days ago";
+  }
+
+  copyUrl() {
+    let url = window.location.href;
+    navigator.clipboard.writeText(url).then(
+      () => {
+        const toasts = document.querySelector('#toasts') as HTMLElement;
+        const notificationService = document.createElement('div');
+        notificationService.classList.add('notificationService', 'success');
+        notificationService.innerText = "Text Copied Successfuly"
+        toasts.appendChild(notificationService);
+        notificationService.addEventListener('click',()=> {
+          notificationService.remove();
+        })
+        
+        setTimeout(() => {
+           notificationService.remove()
+        }, 3000);
+      }
+    );
   }
 
   ngOnDestroy(){
-    localStorage.setItem('posts', JSON.stringify(this.posts));
+    this.postService.updateLikeCount(this.post.id, this.post).subscribe(res => {
+      if(res) {
+
+      }
+    })
   }
   
 }

@@ -19,9 +19,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.socialAuthService.authState.subscribe((user) => {
       localStorage.setItem('userObject', JSON.stringify(user));
-      this.router.navigate(['dashboard']);
       this.user = user;
       this.loggedIn = (user != null);
+      this.router.navigate(['dashboard']);
   });
   }
 

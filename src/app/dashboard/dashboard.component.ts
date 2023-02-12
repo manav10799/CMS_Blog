@@ -11,6 +11,7 @@ export class DashboardComponent implements OnInit {
 
   posts: Array<PostsModel> = [];
   filteredPosts: Array<PostsModel> = [];
+  isDataLoaded: boolean;
 
   constructor(private postsService: PostsService,
     private router: Router,
@@ -21,10 +22,11 @@ export class DashboardComponent implements OnInit {
   }
 
   getPosts() {
-    // this.postsService.getPosts().subscribe((result) => {
-    //   this.filteredPosts = this.posts = result;
-    // });
-    this.filteredPosts = this.posts = JSON.parse(localStorage.getItem('posts') || '[]');
+    this.postsService.getPosts().subscribe((result) => {
+      this.filteredPosts = this.posts = result.sort((a:any,b:any) => a.id - b.id);
+      this.isDataLoaded = true;
+    });
+    // this.filteredPosts = this.posts = JSON.parse(localStorage.getItem('posts') || '[]');
   }
 
   filterPosts(value:any) {

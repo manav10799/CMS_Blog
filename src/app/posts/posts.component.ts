@@ -38,29 +38,27 @@ export class PostsComponent implements OnInit {
  
   addPosts() {
     let posts = new AddPostModel(this.postsForm.value);
-    console.log(
-    JSON.parse(localStorage.getItem('posts') || '{}').length
-    )
     posts.date = new Date();
     posts.tags.push(...this.tags);
     posts.author = this.user.name;
-    posts.id =  JSON.parse(localStorage.getItem('posts') || '{}').length ?  JSON.parse(localStorage.getItem('posts') || '{}').length + 1 : 1;
-    if(this.postsForm.valid) {
-      // this.postsService.addPosts(posts).subscribe(result => {
-      //   if(result) {
-      //     this.postsForm.reset();
-      //   }
-      // })
-      if(!localStorage.getItem('posts')) {
-        localStorage.setItem('posts', JSON.stringify([posts]));
-        this.postsForm.reset();
-      }
-      else {
-        let retrievedArray = JSON.parse(localStorage.getItem('posts') || '{}');
-        retrievedArray.push(posts);
-        localStorage.setItem('posts', JSON.stringify(retrievedArray));
-        this.postsForm.reset();
-      }
+    posts.id = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + (new Date()).getTime().toString(36);
+
+      if(this.postsForm.valid) {
+      this.postsService.addPosts(posts).subscribe(result => {
+        if(result) {
+          this.postsForm.reset();
+        }
+      })
+      // if(!localStorage.getItem('posts')) {
+      //   localStorage.setItem('posts', JSON.stringify([posts]));
+      //   this.postsForm.reset();
+      // }
+      // else {
+      //   let retrievedArray = JSON.parse(localStorage.getItem('posts') || '{}');
+      //   retrievedArray.push(posts);
+      //   localStorage.setItem('posts', JSON.stringify(retrievedArray));
+      //   this.postsForm.reset();
+      // }
     }
   }
 
