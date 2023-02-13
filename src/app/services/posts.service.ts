@@ -36,4 +36,8 @@ export class PostsService {
     return this.http.put(`${this.apiUrl}/blogs/posts/${id}`,post);
   }
 
+  deleteComments(id:any): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/blogs/comments/${id}`);
+  }
+
 }

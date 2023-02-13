@@ -17,7 +17,7 @@ export class IndividualPostComponent implements OnInit,OnDestroy {
   user: SocialUser = new SocialUser;
   routeId: any;
   modalRef?: BsModalRef;
-  comments: Array<any> = [];
+  comments: Array<AddComment> = [];
   comment:any;
 
   constructor(private route: ActivatedRoute,
@@ -27,7 +27,6 @@ export class IndividualPostComponent implements OnInit,OnDestroy {
   }
   
   ngOnInit(): void {
-    // this.posts = JSON.parse(localStorage.getItem('posts') || '{}');
     this.routeId = this.route.snapshot.paramMap.get('id');
     this.postService.getIndividualPost(this.routeId).subscribe(res => {
       this.post = res[0];
@@ -35,7 +34,6 @@ export class IndividualPostComponent implements OnInit,OnDestroy {
         this.getComments(this.post.id);
       }
     });
-    // this.post = this.posts.filter((e: any) => e.id === this.routeId)[0];
     this.authService.authState.subscribe(user => {
       this.user = user;
     });
@@ -62,6 +60,8 @@ export class IndividualPostComponent implements OnInit,OnDestroy {
     comment.author = this.user.name;
     comment.date = new Date();
     comment.profileImage = this.user.photoUrl;
+    comment.email = this.user.email;
+    comment.identifier =  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15) + (new Date()).getTime().toString(36);
     this.comments.push(comment);
     this.postService.addComments(comment).subscribe(res => {
         if(res) {
@@ -76,24 +76,37 @@ export class IndividualPostComponent implements OnInit,OnDestroy {
     return date2.diff(date1, 'days') === 0 ? date2.diff(date1,'minutes') > 60 ? date2.diff(date1,'hours') + " hours ago": date2.diff(date1,'minutes') + " minutes ago"  : date2.diff(date1, 'days') + " days ago";
   }
 
+  notificationService(type:any, text:any) {
+    const toasts = document.querySelector('#toasts') as HTMLElement;
+    const notificationService = document.createElement('div');
+    notificationService.classList.add('notificationService', type);
+    notificationService.innerText = text;
+    toasts.appendChild(notificationService);
+    notificationService.addEventListener('click',()=> {
+      notificationService.remove();
+    })
+        
+    setTimeout(() => {
+      notificationService.remove()
+    }, 3000);
+  }
+
   copyUrl() {
     let url = window.location.href;
     navigator.clipboard.writeText(url).then(
       () => {
-        const toasts = document.querySelector('#toasts') as HTMLElement;
-        const notificationService = document.createElement('div');
-        notificationService.classList.add('notificationService', 'success');
-        notificationService.innerText = "Text Copied Successfuly"
-        toasts.appendChild(notificationService);
-        notificationService.addEventListener('click',()=> {
-          notificationService.remove();
-        })
-        
-        setTimeout(() => {
-           notificationService.remove()
-        }, 3000);
+        this.notificationService('success','Text Copied Successfuly');
       }
     );
+  }
+
+  deleteComment(id:any) {
+    this.postService.deleteComments(id).subscribe(res => {
+      if (res) {
+        this.notificationService('success','Comment Deleted Successfully');
+        this.comments = this.comments.filter(ide => ide.identifier != id);
+      }
+    });
   }
 
   ngOnDestroy(){

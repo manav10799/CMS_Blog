@@ -46,9 +46,14 @@
                     <div>
                         <div class="d-flex align-items-center mb-10">
                             <img src="{{com.profileImage}}" alt="Avatar" class="avatar avatar-sm">
-                            <div class="ml-10">
-                                <p class="text-normal">{{com.author}}</p>
-                                <p class="text-secondary-emphasis text-sm">{{getDateTimeDiff(com.date)}}</p>
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="ml-10">
+                                    <p class="text-normal">{{com.author}}</p>
+                                    <p class="text-secondary-emphasis text-sm">{{getDateTimeDiff(com.date)}}</p>
+                                </div>
+                                <div *ngIf="com.email === user.email">
+                                    <span class="icon ic-bin icon-grey cursor-pointer" (click)="deleteComment(com.identifier)"></span>
+                                </div>
                             </div>
                         </div>
                         <p class="text-normal">{{i+1}}. {{com.comments}}</p>

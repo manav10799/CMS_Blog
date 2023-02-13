@@ -54,6 +54,8 @@ export class AddComment {
     author: string;
     date: Date;
     profileImage: string;
+    email: string;
+    identifier: any;
 
     constructor(args: any) {
         this.id = args.id;
@@ -61,5 +63,7 @@ export class AddComment {
         this.author = args.author;
         this.date = args.date;
         this.profileImage = args.profileImage;
+        this.email = args.email;
+        this.identifier = args.identifier;
     }
  }
