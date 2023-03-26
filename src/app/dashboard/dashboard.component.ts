@@ -12,13 +12,16 @@ export class DashboardComponent implements OnInit {
   posts: Array<PostsModel> = [];
   filteredPosts: Array<PostsModel> = [];
   isDataLoaded: boolean;
+  socketPosts:Array<PostsModel> = [];
 
-  constructor(private postsService: PostsService,
-    private router: Router,
-    ) {}
+  constructor(private postsService: PostsService) {}
   
   ngOnInit(): void {
     this.getPosts();
+    this.postsService.getSocketPosts().subscribe(data=> {
+      this.socketPosts = data;
+      this.filteredPosts.push(data);
+    })
   }
 
   getPosts() {
@@ -37,5 +40,5 @@ export class DashboardComponent implements OnInit {
       this.filteredPosts = this.posts;
     }
   }
-
+  
 }

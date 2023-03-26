@@ -1,8 +1,10 @@
 import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AddPostModel, AddTags, PostsModel } from '../services/posts.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AddPostModel} from '../services/posts.model';
 import { PostsService } from '../services/posts.service';
+import io from 'socket.io-client';
+import { environment } from 'src/environments/environments';
 
 @Component({
   selector: 'app-posts',
@@ -17,6 +19,9 @@ export class PostsComponent implements OnInit {
   categories: Array<any> = [];
   file:any;
   user:any;
+  socket:any;
+  apiUrl = environment.apiUrl;
+
   constructor(private postsService: PostsService,
     private socialAuthService: SocialAuthService) {
   }
@@ -27,6 +32,7 @@ export class PostsComponent implements OnInit {
         this.user = user;
       }
     });
+    this.socket = io(`${this.apiUrl}`);
   }
 
   postsForm = new FormGroup({
@@ -47,6 +53,7 @@ export class PostsComponent implements OnInit {
       this.postsService.addPosts(posts).subscribe(result => {
         if(result) {
           this.postsForm.reset();
+          this.socket.emit('connection',posts);
         }
       })
       // if(!localStorage.getItem('posts')) {

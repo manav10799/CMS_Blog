@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from "rxjs";
 import { AddComment, AddPostModel } from "./posts.model";
 import { environment } from "src/environments/environments";
+import io from 'socket.io-client';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +13,19 @@ export class PostsService {
   constructor(private http: HttpClient) { }
 
   apiUrl = environment.apiUrl;
+  socket = io(`${this.apiUrl}`);
+
   getPosts():Observable<any> {
     return this.http.get(`${this.apiUrl}/blogs/posts`);
+  }
+
+  getSocketPosts():Observable<any> {
+    const obs = new Observable<any>(observer => {
+      this.socket.on('connection', (data:Observable<any>) => {
+        observer.next(data);
+      });
+    });
+    return obs;
   }
 
   addPosts(posts: AddPostModel):Observable<any> {
