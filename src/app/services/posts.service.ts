@@ -13,7 +13,7 @@ export class PostsService {
   constructor(private http: HttpClient) { }
 
   apiUrl = environment.apiUrl;
-  socket = io(`${this.apiUrl}`);
+  socket = io(`${this.apiUrl}`,{withCredentials: true});
 
   getPosts():Observable<any> {
     return this.http.get(`${this.apiUrl}/blogs/posts`);

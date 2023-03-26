@@ -32,7 +32,7 @@ export class PostsComponent implements OnInit {
         this.user = user;
       }
     });
-    this.socket = io(`${this.apiUrl}`);
+    this.socket = io(`${this.apiUrl}`,{withCredentials: true});
   }
 
   postsForm = new FormGroup({
