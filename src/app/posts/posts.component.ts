@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AddPostModel} from '../services/posts.model';
 import { PostsService } from '../services/posts.service';
-import io from 'socket.io-client';
 import { environment } from 'src/environments/environments';
 
 @Component({
@@ -19,7 +18,7 @@ export class PostsComponent implements OnInit {
   categories: Array<any> = [];
   file:any;
   user:any;
-  socket:any;
+  // socket:any;
   apiUrl = environment.apiUrl;
 
   constructor(private postsService: PostsService,
@@ -32,7 +31,7 @@ export class PostsComponent implements OnInit {
         this.user = user;
       }
     });
-    this.socket = io(`${this.apiUrl}`,{withCredentials: true});
+    // this.socket = io(`${this.apiUrl}`,{withCredentials: true});
   }
 
   postsForm = new FormGroup({
@@ -53,7 +52,7 @@ export class PostsComponent implements OnInit {
       this.postsService.addPosts(posts).subscribe(result => {
         if(result) {
           this.postsForm.reset();
-          this.socket.emit('connection',posts);
+          // this.socket.emit('connection',posts);
         }
       })
       // if(!localStorage.getItem('posts')) {

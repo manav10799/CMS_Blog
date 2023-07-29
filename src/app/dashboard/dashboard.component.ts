@@ -17,10 +17,10 @@ export class DashboardComponent implements OnInit {
   
   ngOnInit(): void {
     this.getPosts();
-    this.postsService.getSocketPosts().subscribe(data=> {
-      // this.socketPosts = data;
-      this.filteredPosts.push(data);
-    })
+    // this.postsService.getSocketPosts().subscribe(data=> {
+    //   // this.socketPosts = data;
+    //   this.filteredPosts.push(data);
+    // })
   }
 
   getPosts() {
