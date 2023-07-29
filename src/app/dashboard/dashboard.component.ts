@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { PostsModel } from '../services/posts.model';
 import { PostsService } from '../services/posts.service';
 
@@ -12,14 +11,14 @@ export class DashboardComponent implements OnInit {
   posts: Array<PostsModel> = [];
   filteredPosts: Array<PostsModel> = [];
   isDataLoaded: boolean;
-  socketPosts:Array<PostsModel> = [];
+  // socketPosts:Array<PostsModel> = [];
 
   constructor(private postsService: PostsService) {}
   
   ngOnInit(): void {
     this.getPosts();
     this.postsService.getSocketPosts().subscribe(data=> {
-      this.socketPosts = data;
+      // this.socketPosts = data;
       this.filteredPosts.push(data);
     })
   }
