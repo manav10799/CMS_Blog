@@ -67,3 +67,27 @@ export class AddComment {
         this.identifier = args.identifier;
     }
  }
+
+ export class AddReminder {
+    id: number;
+    title: string;
+    message: string;
+    scheduledTime: any;
+
+    constructor(args:any){
+        this.id = args.id;
+        this.title = args.title;
+        this.message = args.message;
+        this.scheduledTime = args.scheduledTime;
+    }
+ }
+
+ export class FileContents {
+    content: File[];
+    fileName: string;
+
+    constructor(args:any) {
+        this.content = args.content;
+        this.fileName = args.fileName;
+    }
+ }

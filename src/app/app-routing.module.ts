@@ -5,6 +5,8 @@ import { IndividualPostComponent } from './dashboard/individual-post/individual-
 import { PostsComponent } from './posts/posts.component';
 import { AuthGuardService } from './services/authgaurd.service';
 import { LoginComponent } from './shared/login/login.component';
+import { RemindersComponent } from './reminders/reminders.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 const routes: Routes = [
   {
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuardService]},
   { path: 'dashboard/:id', component: IndividualPostComponent, canActivate: [AuthGuardService]},
   { path: 'posts', component: PostsComponent,canActivate: [AuthGuardService] },
+  { path: 'reminders', component: RemindersComponent,canActivate: [AuthGuardService] },
+  { path: 'file-upload', component: FileUploadComponent,canActivate: [AuthGuardService] },
   { path: '**', component: LoginComponent},
 ];
 

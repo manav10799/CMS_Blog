@@ -29,6 +29,9 @@ import { LoginComponent } from './shared/login/login.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { AuthGuardService } from './services/authgaurd.service';
 import { IndividualPostComponent } from './dashboard/individual-post/individual-post.component';
+import { RemindersComponent } from './reminders/reminders.component';
+import { DatePipe } from '@angular/common';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,8 @@ import { IndividualPostComponent } from './dashboard/individual-post/individual-
     TopNavComponent,
     LoginComponent,
     IndividualPostComponent,
+    RemindersComponent,
+    FileUploadComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +70,7 @@ import { IndividualPostComponent } from './dashboard/individual-post/individual-
     
   ],
   providers: [{
-    provide: 'SocialAuthServiceConfig',
+    provide: 'SocialAuthServiceConfig', 
     useValue: {
       autoLogin: true,
       providers: [
@@ -83,6 +88,7 @@ import { IndividualPostComponent } from './dashboard/individual-post/individual-
   },
     AuthGuardService,
     PostsService,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

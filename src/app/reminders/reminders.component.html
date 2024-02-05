@@ -1,0 +1,8 @@
+<div class="p-20">
+    <form [formGroup]="reminderForm">
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" formControlName="title">
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="message"></textarea>
+        <timepicker formControlName="scheduleTime"></timepicker>
+        <button type="submit" class="btn" (click)="postReminder()">Submit Reminder</button>
+    </form>
+</div> 
